@@ -1,0 +1,18 @@
+command=$1
+
+if [ -z "$command" ]; then
+  echo "No command supplied, exit"
+  exit 1
+fi
+# if command is start
+if [ "$command" == "start" ]; then
+  echo "starting vpn..."
+  # <Password> to be replaced with your own password
+  echo '<password>' | sudo openconnect --script-tun --script "ocproxy -D 9052" --config=~/.config/openconnect/cuhksz vpn.cuhk.edu.cn &
+  echo "vpn started"
+fi
+if [ "$command" == "stop" ]; then
+  echo "stopping vpn..."
+  sudo ps -ef | grep openconnect | grep cuhk | grep -v grep | awk '{print $2}' | sudo xargs kill -9
+  echo "vpn stopped"
+fi
