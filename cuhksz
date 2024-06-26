@@ -1,0 +1,7 @@
+user=<student id>
+protocol=anyconnect
+authgroup=CUHK(SZ)
+passwd-on-stdin
+no-dtls
+#script-tun
+#script "ocproxy -D 9052"
